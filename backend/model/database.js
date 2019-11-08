@@ -17,6 +17,18 @@ sequelize
     console.error('❌- Unable to connect to the database:', err);
   });
 
+var Blog = sequelize.define('blog', {
+  title: {
+    type: Sequelize.STRING
+  },
+  content: {
+    type: Sequelize.STRING
+  },
+  description: {
+    type: Sequelize.STRING
+  },
+});
+
 // 根据 model自动创建表
 sequelize
   .sync()
@@ -27,11 +39,7 @@ sequelize
     console.log('init db error', err)
   })
 
-var Blog = sequelize.define('blog', {
-  text: {
-    type: Sequelize.STRING
-  },
-});
+
 
 
 // Blog.sync().then(function () {
