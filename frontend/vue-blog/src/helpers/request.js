@@ -9,16 +9,16 @@ export default function request(url, type = 'GET', data = {}) {
       url,
       method: type
     }
-    if(type.toLowerCase() === 'get') {
+    if (type.toLowerCase() === 'get') {
       option.params = data
-    }else {
+    } else {
       option.data = data
     }
     axios(option).then(res => {
       console.log(res.data)
-      if(res.data.status === 0) {
+      if (res.data.status === 0) {
         resolve(res.data)
-      }else{
+      } else {
         Message.error(res.data.msg)
         reject(res.data)
       }
