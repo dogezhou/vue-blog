@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h3 v-for="blog in blogs">
+    <el-button>dkjdk</el-button>
+    <h3 v-for="blog in blogList">
       博客标题：{{blog.title}}
       博客内容：{{blog.content}}
     </h3>
@@ -82,7 +83,7 @@
 </template>
 
 <script>
-import blog from '../api/blog'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'HelloWorld',
@@ -91,14 +92,20 @@ export default {
   },
   data() {
     return {
-      blogs: [],
     }
   },
+  computed: {
+    ...mapState('blog', {
+      blogList: state => state.list
+    })    
+  },
+  methods: {
+    ...mapActions('blog', [
+      'getBlogList',
+    ]),
+  },
   created() {
-    this.page = parseInt(this.$route.query.page) || 1
-    blog.getBlogs().then(res => {
-      this.blogs = res.data
-    })
+    this.getBlogList()
   },
 }
 </script>
