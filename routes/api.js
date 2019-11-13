@@ -45,10 +45,10 @@ router
       {
         where: { id }
       }
-    ).then(function (blogId) {
+    ).then(function () {
       Blog.findOne({
         where: {
-          id: blogId
+          id
         }
       }).then(function (blog) {
         res.send({ status: 0, data: blog })

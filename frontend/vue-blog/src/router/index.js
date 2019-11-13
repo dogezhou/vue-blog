@@ -17,6 +17,11 @@ const routes = [
     path: '/Create',
     component: () =>import ('@/views/Create'),
     meta:{ requiresAuth:true }
+  },
+  {
+    path: '/Edit/:blogId',
+    component: () =>import ('@/views/Edit'),
+    meta:{ requiresAuth:true }
   },  
   {
     path: '/about',
