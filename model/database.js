@@ -29,6 +29,23 @@ var Blog = sequelize.define('blog', {
   },
 });
 
+var User = sequelize.define('user', {
+  githubId: {
+    type: Sequelize.STRING
+  },
+  username: {
+    type: Sequelize.STRING
+  },
+  avatar: {
+    type: Sequelize.STRING
+  },
+  provider: {
+    type: Sequelize.STRING
+  },
+});
+
+Blog.belongsTo(User)
+
 // 根据 model自动创建表
 sequelize
   .sync()
@@ -54,4 +71,5 @@ sequelize
 
 module.exports = {
   Blog,
+  User,
 };

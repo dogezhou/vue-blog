@@ -28,6 +28,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+var passport = require('passport');
+var session = require('express-session');
+app.use(session({secret: 'secret vue-blog key'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'frontend/vue-blog/dist/')));
 
