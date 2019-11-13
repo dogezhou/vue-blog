@@ -46,5 +46,7 @@ html, body, #app {
 }
 main {
   flex-grow: 1;
+  margin: 0 auto;
+  width: 945px;
 }
 </style>
