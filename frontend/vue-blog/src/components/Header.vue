@@ -1,40 +1,42 @@
 <template>
-  <header :class="{login:isLogin,'no-login':!isLogin}">
-    <template v-if="!isLogin">
-      <h1>
-        <router-link to='/'>博客园</router-link>
-      </h1>
-      <p>创作你的创作</p>
-      <div class="btns">
-        <a @click="onLogin">
-          <el-button>使用 GitHub 登录</el-button>
-        </a>
-      </div>
-    </template>
-    <template v-else>
-      <h1>
-        <router-link to='/'>博客园</router-link>
-      </h1>
-      <router-link to='/create'><i class="edit el-icon-plus"></i></router-link>
-      <div class="user">
-        <img
-          class="avatar"
-          :src="user.avatar"
-          :alt="user.username"
-          :title="user.username"
-        >
-        <ul>
-          <li>
-            <router-link to="/my">我的</router-link>
-          </li>
-          <li><a
-              href="#"
-              @click="onLogout"
-            >注销</a></li>
-        </ul>
-      </div>
-    </template>
-  </header>
+  <div class="header-wrapper">
+    <header :class="{login:isLogin,'no-login':!isLogin}">
+      <template v-if="!isLogin">
+        <h1>
+          <router-link to='/'>博客园</router-link>
+        </h1>
+        <p>创作你的创作</p>
+        <div class="btns">
+          <a @click="onLogin">
+            <el-button>使用 GitHub 登录</el-button>
+          </a>
+        </div>
+      </template>
+      <template v-else>
+        <h1>
+          <router-link to='/'>博客园</router-link>
+        </h1>
+        <router-link to='/create'><i class="edit el-icon-plus"></i></router-link>
+        <div class="user">
+          <img
+            class="avatar"
+            :src="user.avatar"
+            :alt="user.username"
+            :title="user.username"
+          >
+          <ul>
+            <li>
+              <router-link to="/my">我的</router-link>
+            </li>
+            <li><a
+                href="#"
+                @click="onLogout"
+              >注销</a></li>
+          </ul>
+        </div>
+      </template>
+    </header>
+  </div>
 </template>
 
 <script>
@@ -81,6 +83,9 @@ export default {
 <style scoped lang='scss'>
 @import "../assets/var.scss";
 
+.header-wrapper {
+  background: $bgColor;
+}
 header.no-login {
   padding: 0 12% 30px 12%;
   background: $bgColor;
@@ -93,7 +98,6 @@ header.no-login {
     font-size: 40px;
     margin: 60px 0 0 0;
     text-transform: uppercase;
-    text-align: left;
     a {
       text-decoration: none;
       margin: 0;
@@ -123,8 +127,10 @@ header.login {
   display: flex;
   align-items: center;
   background: $bgColor;
-
+  width: $contentWidth;
+  margin: 0 auto;
   h1 {
+    text-align: left;
     margin: 0;
     padding: 0;
     color: #fff;

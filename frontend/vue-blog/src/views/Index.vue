@@ -84,7 +84,7 @@ export default {
     margin-bottom: 30px;
   }
   margin: 0 auto;
-  width: 945px;
+  width: $contentWidth;
   text-align: left;
 
   .info-card {
