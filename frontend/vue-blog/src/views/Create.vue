@@ -30,6 +30,7 @@
 
 <script>
 import blog from '@/api/blog'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Create',
@@ -42,6 +43,10 @@ export default {
     }
   },
   computed: {
+    ...mapState('users', [
+      'isLogin',
+      'user'
+    ]),    
     textLimit() {
       return this.title.length
     },
@@ -51,7 +56,7 @@ export default {
   },
   methods: {
     onCreate() {
-      blog.createBlog({ title: this.title, content: this.content, description: this.description})
+      blog.createBlog(this.user.id, { title: this.title, content: this.content, description: this.description})
         .then(res => {
           this.$message({
             message: '创建成功！',

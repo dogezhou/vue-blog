@@ -19,7 +19,12 @@ const actions = {
     return blog.getBlogs().then(res => {
       commit('setBlogList', { list: res.data })
     })
-  }
+  },
+  getBlogsByUserId({ commit }) {
+    return blog.getBlogsByUserId().then(res => {
+      commit('setBlogList', { list: res.data })
+    })
+  }  
 }
 
 export default {

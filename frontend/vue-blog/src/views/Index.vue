@@ -13,15 +13,15 @@
               :to='`/detail/${blog.id}`'
             >
               <img
-                src="https://upload.jianshu.io/users/upload_avatars/1760865/4500636024d4?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
-                alt=""
+                :src="blog.user ? blog.user.avatar : 'https://avatars2.githubusercontent.com/u/1135694?v=4'"
+                alt="头像"
               >
             </router-link>
             <router-link
               class="username"
               :to='`/detail/${blog.id}`'
             >
-              小明
+              {{blog.user ? blog.user.username : '匿名'}}
             </router-link>
             <span class="time">{{blog.createdAt | formatDate}}</span>
           </div>

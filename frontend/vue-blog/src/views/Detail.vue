@@ -6,10 +6,12 @@
           :alt="user.username"
           class="avatar"
         ></router-link>
-      <h3>{{title}}</h3>
-      <p>
-        <router-link :to="`/user/${user.id}`">{{user.username}}</router-link> 发布于{{createdAt | formatDate2}}
-      </p>
+      <div class="title-wrapper">
+        <h3>{{title}}</h3>
+        <p>
+          <router-link :to="`/user/${user.id}`">{{user.username}}</router-link> 发布于{{createdAt | formatDate2}}
+        </p>
+      </div>
     </section>
     <section
       class="article"
@@ -39,7 +41,7 @@ export default {
       this.rawContent = res.data.content
       this.createdAt = res.data.createdAt
       // TODO: 登录用户
-      this.user = {id: 3, username: '张三'} || res.data.user
+      this.user = res.data.user
     })
   },
   computed: {
@@ -58,33 +60,27 @@ export default {
 
 #detail {
   .user-info {
-    display: grid;
-    grid: auto auto / 80px 1fr;
-
+    display: flex;
     margin-top: 30px;
     padding-bottom: 20px;
     border-bottom: 1px solid #ebebeb;
 
     .avatar {
-      grid-column: 1;
-      grid-row: 1 / span 2;
-
       width: 60px;
       height: 60px;
       border-radius: 50%;
     }
-
+    .title-wrapper {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      padding-left: 20px;
+    }
     h3 {
-      grid-column: 2;
-      grid-row: 1;
-
       margin: 5px 0;
     }
 
     p {
-      grid-column: 2;
-      grid-row: 2;
-
       margin-top: 0;
       font-size: 12px;
       color: $textLighterColor;

@@ -1,13 +1,24 @@
 var express = require('express');
 var router = express.Router();
 var Blog = require('../model/database').Blog;
+var User = require('../model/database').User;
 
 router
   .get('/blog', function (req, res, next) {
     var page = req.query.page || 1
+    var userId = req.query.userId
+    var where = {}
+    if (userId) {
+      where.userId = userId
+    }
     Blog.findAll({
       limit: 10,
       offset: (page - 1) * 10,
+      where,
+      include: {
+        model: User,
+        as: 'user'
+      }
     }).then(function (blog) {
       res.send({ status: 0, data: blog })
     })
@@ -17,17 +28,23 @@ router
     Blog.findOne({
       where: {
         id
-      }
+      },
+      include: {
+        model: User,
+        as: 'user'
+      }      
     }).then(function (blog) {
       res.send({ status: 0, data: blog })
     })
   })
   .post('/blog', function (req, res, next) {
     var content = req.body.content || ''
+    var userId = req.body.userId
     Blog.create({
       title: req.body.title,
       content: content,
       description: req.body.description || content.substring(0, 20),
+      userId,
     }).then(function (newItem) {
       res.send({ status: 0, data: newItem.dataValues })
     }).catch(err => {

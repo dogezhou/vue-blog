@@ -9,8 +9,12 @@ const URL = {
 }
 
 export default {
-  getBlogs({ page=1, userId, atIndex } = { page: 1 }) {
+  getBlogs({ page=1, userId } = { page: 1 }) {
     return request(URL.GET_LIST, 'GET', { page, userId })
+  },
+
+  getBlogsByUserId(userId, { page=1 } = { page: 1}) {
+    return this.getBlogs({ userId, page })
   },
 
   getDetail({ blogId }) {
@@ -25,7 +29,7 @@ export default {
     return request(URL.DELETE.replace(':id', blogId), 'DELETE')
   },
 
-  createBlog({ title = '', content = '', description = ''} = { title: '', content: '', description: '' }) {
-    return request(URL.CREATE, 'POST', { title, content, description })
+  createBlog(userId, { title = '', content = '', description = ''} = { title: '', content: '', description: '' }) {
+    return request(URL.CREATE, 'POST', { userId, title, content, description })
   }  
 }
