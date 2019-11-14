@@ -16,4 +16,4 @@ frontend 文件夹为前端项目
 - [x] 支持多个用户
 - [x] 支持 github 第三方登录
 - [x] 支持 markdown
-- [] 支持其他用户一键部署该项目到自己的 [heroku](https://www.heroku.com/) 上
+- [ ] 支持其他用户一键部署该项目到自己的 [heroku](https://www.heroku.com/) 上
