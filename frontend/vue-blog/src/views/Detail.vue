@@ -94,6 +94,7 @@ export default {
 
   .article {
     padding: 30px 0;
+    text-align: left;
   }
 }
 @media (max-width: 768px) {

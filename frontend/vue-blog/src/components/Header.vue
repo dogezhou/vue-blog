@@ -50,7 +50,7 @@ export default {
     }
   },
 
-  // 把 store 中 getter 属性映射到此组件
+  // 把 store 中 state 属性映射到此组件
   computed: {
     ...mapState('users', [
       'isLogin',
