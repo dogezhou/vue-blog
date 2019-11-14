@@ -20,7 +20,7 @@ router
         as: 'user'
       }
     }).then(function (blog) {
-      res.send({ status: 0, data: blog })
+      res.send({ status: 0, data: { list: blog, total: blog.length, page: Number(page) } })
     })
   })
   .get('/blog/:id', function (req, res, next) {

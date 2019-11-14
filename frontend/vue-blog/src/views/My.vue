@@ -5,6 +5,9 @@
       <h3>{{user.username}}</h3>
     </section>
     <section>
+      <div v-if="blogs.length === 0" style="text-align: center;margin: 30px 0;">
+        <h3>暂无内容!</h3>
+      </div>      
       <div class="item" v-for="blog in blogs" :key='blog.id' >
         <div class="date">
           <span class="day">{{ blog.createdAt | getDay }}</span>
@@ -71,20 +74,21 @@ export default {
   },
   created(){
     this.page = parseInt(this.$route.query.page) || 1
-    console.log('ddddddddddddd')
     blog.getBlogsByUserId(this.user.id,{page:this.page})
       .then(res => {
-        this.page = res.page
-        this.blogs = res.data
-        this.total = res.total
+        const { list, page, total } = res.data
+        this.page = page
+        this.blogs = list
+        this.total = total
       })
   },
   methods:{
     ChangePage(newVal){
       blog.getBlogsByUserId(this.user.id,{page:newVal}).then(res =>{
-        this.blogs = res.data
-        this.total = res.total
-        this.page = res.page
+        const { list, page, total } = res.data
+        this.page = page
+        this.blogs = list
+        this.total = total
         this.$router.push({path:"/my",query:{page:newVal}})
       })
     },

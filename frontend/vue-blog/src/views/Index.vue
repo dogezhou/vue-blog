@@ -2,6 +2,9 @@
   <div class="index">
     <div class="blog-list">
       <section class="blog-list">
+        <div v-if="blogList.length === 0" style="text-align: center;margin: 30px 0;">
+          <h3>暂无内容!</h3>
+        </div>
         <div
           class="info-card"
           :key="index"
@@ -38,16 +41,16 @@
           </div>
         </div>
       </section>
-      <!-- <section class="pagination">
-      <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="total"
-      :current-page="page"
-      :pager-count="5"
-      @current-change='ChangePage'>
-      </el-pagination>
-    </section>     -->
+      <section class="pagination">
+        <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="total"
+        :current-page="page"
+        :pager-count="5"
+        @current-change='changePage'>
+        </el-pagination>
+    </section>    
     </div>
   </div>
 </template>
@@ -58,14 +61,21 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'index',
   computed: {
-    ...mapState('blog', {
-      blogList: state => state.list
-    }),
+    ...mapState('blog', [
+      'blogList',
+      'page',
+      'total',
+    ]),
   },
   methods: {
     ...mapActions('blog', [
       'getBlogList',
     ]),
+    changePage(newVal) {
+      this.getBlogList({page: newVal}).then(res => {
+        this.$router.push({path:'/',query:{page:newVal}})
+      })
+    }
   },
   created() {
     this.getBlogList()
