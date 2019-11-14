@@ -101,10 +101,11 @@ passport.deserializeUser(function (obj, done) {
   done(null, obj);
 });
 
+// 需要创建一个 github 应用，设置一下 https://github.com/settings/applications/1170028
 passport.use(new GitHubStrategy({
   clientID: 'a83e797e0ca504ab017f',
   clientSecret: 'a295701380eaa01a8d4808d515ed2ea4f694cb03',
-  callbackURL: "http://localhost:3000/api/github/callback"
+  callbackURL: "https://vue-blog-zw.herokuapp.com/api/github/callback"
 },
   function (accessToken, refreshToken, profile, done) {
     // // 记录 github 登录的用户
