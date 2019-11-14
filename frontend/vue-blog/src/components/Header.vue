@@ -6,12 +6,9 @@
       </h1>
       <p>创作你的创作</p>
       <div class="btns">
-        <router-link to="/register">
-          <el-button>立即注册</el-button>
-        </router-link>
-        <router-link to="/login">
-          <el-button>立即登录</el-button>
-        </router-link>
+        <a @click="onLogin">
+          <el-button>使用 GitHub 登录</el-button>
+        </a>
       </div>
     </template>
     <template v-else>
@@ -42,7 +39,7 @@
 
 <script>
 // 映射
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Header',
@@ -53,7 +50,7 @@ export default {
 
   // 把 store 中 getter 属性映射到此组件
   computed: {
-    ...mapGetters([
+    ...mapState('users', [
       'isLogin',
       'user'
     ])
@@ -61,16 +58,18 @@ export default {
 
   //在页面没有渲染之前检查用户是否登录
   created() {
-    this.checkLogin()
+    this.getUserInfo()
   },
   methods: {
-    // 把 auth.js 中的 checkLogin 方法映射到此组件
-    ...mapActions([
-      'checkLogin',
-      'logout'
+    // 把 users.js 中的 getUserInfo 方法映射到此组件
+    ...mapActions('users', [
+      'getUserInfo',
     ]),
+    onLogin() {
+      window.location="/api/github"
+    },
     onLogout() {
-      this.logout()
+      window.location="/api/logout"
     }
   },
   components: {
@@ -94,6 +93,7 @@ header.no-login {
     font-size: 40px;
     margin: 60px 0 0 0;
     text-transform: uppercase;
+    text-align: left;
     a {
       text-decoration: none;
       margin: 0;
