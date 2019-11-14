@@ -40,7 +40,6 @@ export default {
       this.title = res.data.title
       this.rawContent = res.data.content
       this.createdAt = res.data.createdAt
-      // TODO: 登录用户
       this.user = res.data.user
     })
   },

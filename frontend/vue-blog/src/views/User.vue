@@ -126,7 +126,9 @@ export default {
     display: flex;
     text-align: left;
     margin: 20px 0;
-
+    h3, p {
+      margin: 0,
+    }    
     .date {
       display: flex;
       flex-direction: column;
