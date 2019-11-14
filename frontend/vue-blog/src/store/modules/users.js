@@ -13,17 +13,17 @@ const getters = {
 
 const mutations = {
   setUserInfo(state, payload) {
-    // state.user = payload.user
-    // state.isLogin = payload.isLogin
-    // DEBUG:
-    state.user = {
-      avatar: "https://avatars3.githubusercontent.com/u/14866230?v=4",
-      githubId: "14866230",
-      id: 1,
-      provider: "github",
-      username: "周伟", 
-    }
-    state.isLogin = true
+    state.user = payload.user
+    state.isLogin = payload.isLogin
+    // // DEBUG:
+    // state.user = {
+    //   avatar: "https://avatars3.githubusercontent.com/u/14866230?v=4",
+    //   githubId: "14866230",
+    //   id: 1,
+    //   provider: "github",
+    //   username: "周伟", 
+    // }
+    // state.isLogin = true
   }
 }
 
